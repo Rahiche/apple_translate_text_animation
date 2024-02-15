@@ -38,7 +38,7 @@ class _AppState extends State<App> {
       theme: ThemeData.dark(useMaterial3: true),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Dynamic Wrap Key'),
+          title: const Text('Animation Demo'),
           actions: [
             IconButton(
               onPressed: () async {
@@ -52,25 +52,52 @@ class _AppState extends State<App> {
           ],
         ),
         backgroundColor: Colors.black,
-        floatingActionButton: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            FloatingActionButton.small(
-              onPressed: () {
-                fullDurationInMs = fullDurationInMs ~/ 2;
-                setState(() {});
-              },
-              child: const Icon(Icons.remove),
-            ),
-            const SizedBox(height: 8),
-            FloatingActionButton.small(
-              onPressed: () {
-                fullDurationInMs = fullDurationInMs * 2;
-                setState(() {});
-              },
-              child: const Icon(Icons.add),
-            ),
-          ],
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                height: 60,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: texts.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: OutlinedButton(
+                        onPressed: () {
+                          setState(() {
+                            currentText = texts[index];
+                            wrapKey++;
+                          });
+                        },
+                        child: Text('${index + 1}'),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 8),
+              FloatingActionButton.small(
+                onPressed: () {
+                  fullDurationInMs = fullDurationInMs ~/ 2;
+                  setState(() {});
+                },
+                child: const Icon(Icons.remove),
+              ),
+              const SizedBox(height: 8),
+              FloatingActionButton.small(
+                onPressed: () {
+                  fullDurationInMs = fullDurationInMs * 2;
+                  setState(() {});
+                },
+                child: const Icon(Icons.add),
+              ),
+            ],
+          ),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,28 +132,6 @@ class _AppState extends State<App> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 60,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: texts.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: OutlinedButton(
-                      onPressed: () {
-                        setState(() {
-                          currentText = texts[index];
-                          wrapKey++;
-                        });
-                      },
-                      child: Text('${index + 1}'),
-                    ),
-                  );
-                },
-              ),
-            ),
-            const Spacer(),
           ],
         ),
       ),
