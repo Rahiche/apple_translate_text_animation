@@ -8,7 +8,6 @@ Explore it on the web:
 
 Take a look at the animation:
 
-https://github.com/Rahiche/apple_translate_text_animation/assets/37366956/38bc95ad-e25e-4782-9194-e0311b40e361
 
-
+https://github.com/Rahiche/apple_translate_text_animation/assets/37366956/1734549a-845e-4b89-a092-d0ed09a1d2bb
 
